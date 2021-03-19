@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="button">qef</button>
+<script>
+    var button = document.getElementById('button');
+
+    button.onmousedown = function(e) {
+
+        var coords = getCoords(button);
+        var shiftX = e.pageX - coords.left;
+        // var shiftY = e.pageY - coords.top;
+
+        button.style.position = 'absolute';
+        document.body.appendChild(button);
+        moveAt(e);
+
+        button.style.zIndex = 1000;
+
+        function moveAt(e) {
+            if(e.pageX - shiftX > 0 && e.pageX - shiftX < document.documentElement.clientWidth - button.offsetWidth){
+                button.style.left = e.pageX - shiftX + 'px';
+            }
+        }
+
+        document.onmousemove = function(e) {
+            moveAt(e);
+        };
+
+        button.onmouseup = function() {
+            document.onmousemove = null;
+            button.onmouseup = null;
+        };
+
+    };
+
+    button.ondragstart = function() {
+        return false;
+    };
+
+    function getCoords(elem) {
+        var box = elem.getBoundingClientRect();
+        return {
+            left: box.left + pageXOffset
+        };
+    }
+</script>
+</body>
+</html>

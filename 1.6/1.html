@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Worker(name, surname, rate, days) {
+        var salary = 0;
+        this.getName = function () {
+            return name;
+        };
+        this.getSurname = function () {
+            return surname;
+        };
+        this.rate = function (amount) {
+            if (!arguments.length) {
+                return rate;
+            } else {
+                rate = amount;
+            }
+        };
+        this.days = function (amount) {
+            if (!arguments.length) {
+                return days;
+            } else if (amount >= 10 && amount <= 31) {
+                days = amount;
+            } else {
+                throw new Error("Число дне должно быть не меньше 10 и не больше 31");
+            }
+        };
+        this.salary = function (amount) {
+            if (!arguments.length) {
+                return rate * days;
+            } else {
+                salary = amount;
+            }
+        }
+    }
+
+    var worker = new Worker('Иван', 'Иванов', 10, 31);
+    alert(worker.getName()); //выведет 'Иван'
+    alert(worker.getSurname()); //выведет 'Иванов'
+    alert(worker.rate()); //выведет 10
+    alert(worker.days()); //выведет 31
+    alert(worker.salary()); //выведет 310 - то есть 10*31
+    //Теперь используем сеттер:
+    worker.rate(20); //зададим ставку
+    worker.days(10); //зададим количество дней (проверка: сумма рабочих дней должна быть не меньше 10 и не больше 31)
+    worker.salary(10); //задаем зарплату (не изменяя количество рабочих дней)
+    alert(worker.salary()); //выведет 200 - то есть 20*10
+</script>
+</body>
+</html>

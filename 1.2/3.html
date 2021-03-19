@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function getSumsArray(arr) {
+        var sums = new Array(arr.length);
+        var t = 0;
+        while ( t != arr.length){
+            var arr1 = arr.slice(0, t+1);
+                 var result = arr1.reduce(function (sum, current) {
+                     return sum + current;
+                 }, 0);
+                 sums[t] = result;
+                 t++;
+             }
+             return(sums);
+    }
+    alert(getSumsArray([1, 2, 3, 4, 5]));
+</script>
+</body>
+</html>

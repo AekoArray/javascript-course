@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+function User(name, surname) {
+    this.name = name;
+    this.surname = surname;
+
+    this.getInfo = function () {
+        return this.name + ' ' + this.surname;
+    }
+}
+function Student(name, surname, year) {
+    User.apply(this, arguments);
+    this.year = year;
+    var isStudent = false;
+
+    this.getCourse = function () {
+        if (isStudent === false){
+            return "Студент не зачислен";
+            // throw new Error("Студент отчислен");
+        } else {
+            var data = new Date();
+            return data.getFullYear() - this.year;
+        }
+    }
+
+    this.getInfo = function () {
+        if (isStudent === false){
+            return "Студент не зачислен";
+            // throw new Error("Студент отчислен");
+        } else {
+            return this.name + ' ' + this.surname + " - студент " + this.getCourse() + " курса";
+        }
+    }
+
+    this.enroll = function () {
+        if(isStudent === false) {
+            var data = new Date();
+            this.year = data.getFullYear() - 1;
+             isStudent = true;
+             alert("Студент зачислен")
+        } else {
+            alert("студент уже зачислен");
+        }
+    }
+    this.expel = function () {
+        isStudent = false;
+        alert("Студент отчислен");
+    }
+}
+
+var Katya = new User("Katya", "Nikolaeva");
+alert(Katya.getInfo());
+var Alex = new Student("Alex", "Skvarkovsky", 2018);
+Alex.enroll();
+alert(Alex.getCourse());
+alert(Alex.getInfo());
+Alex.enroll();
+alert(Alex.getCourse());
+Alex.expel();
+alert(Alex.getCourse());
+</script>
+</body>
+</html>

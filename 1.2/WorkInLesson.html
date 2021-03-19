@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var arr = new Array();
+    var sum = 0;
+    var num = prompt("Введите число", 0);
+    while(!isNaN(num) & num!= "" ){
+            arr.push(+num) ;
+        num = prompt("Введите число", 0);
+    }
+    for (var key in arr){
+        var sum = +sum + arr[key];
+    }
+    alert(sum);
+</script>
+</body>
+</html>

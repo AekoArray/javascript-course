@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var number = prompt("Введите число", 0);
+    var rec = 1;
+    function recursion(num) {
+        if (num >= 1) {
+            rec = +num*recursion(num-1);
+            return rec;
+        } else {
+            return rec;
+        }
+    }
+    alert(recursion(number));
+</script>
+</body>
+</html>

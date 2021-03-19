@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function checkPresence(who) {
+        if(typeof who == "boolean"){
+            if(who == true){
+                alert("Сегодня все присутствуют на уроке")
+            } else {
+                alert("Никого нет");
+            }
+        } else if(typeof who == "string"){
+    alert(who + " здесь!");
+    } else if(typeof who == "number"){
+        alert("Сегодня на уроке присутствуют " + who + " человека");
+    } else if(Array.isArray(who)){
+        who.forEach(checkPresence);
+    } else if (who.getDate){
+        alert("Сегодня " + who.getDate() + "."+ who.getMonth() + "."+ who.getFullYear());
+    }
+    }
+
+     checkPresence("Пафнутий"); // Пафнутий здесь!
+     checkPresence(["Пафнутий", "Ипполит"]); // Пафнутий здесь! Ипполит здесь!
+     checkPresence(["Пафнутий", "Ипполит", ["Люба", "Клава"]]); // Пафнутий здесь! Ипполит здесь! Люба здесь! Клава здесь!
+    checkPresence (24); // Сегодня на уроке присутствуют 24 человека
+    var date = new Date();
+    checkPresence (date); // Сегодня 09.10.2017
+     checkPresence (true);
+     checkPresence (false); // Никого
+</script>
+</body>
+</html>

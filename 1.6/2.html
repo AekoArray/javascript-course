@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function User(name, surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+    User.prototype.getInfo = function () {
+        return this.name + ' ' + this.surname;
+    };
+    
+    function Student(name, surname, year) {
+        // User.apply(this, arguments);
+        this.name = name;
+        this.surname = surname;
+        this.year = year;
+        this.isStudent = false;
+    }
+    Student.prototype = Object.create(User.prototype);
+
+    Student.prototype.getCourse = function () {
+        if (this.isStudent === false){
+            return "Студент не зачислен";
+            // throw new Error("Студент отчислен");
+        } else {
+            var data = new Date();
+            return data.getFullYear() - this.year;
+        }
+    };
+
+    Student.prototype.getInfo = function () {
+        if (this.isStudent === false){
+            return "Студент не зачислен";
+            // throw new Error("Студент отчислен");
+        } else {
+            return User.prototype.getInfo.apply(this, arguments) + ' - студент ' + this.getCourse() + ' курса';
+        }
+    };
+
+
+    Student.prototype.enroll = function () {
+        if(this.isStudent === false) {
+            var data = new Date();
+            this.year = data.getFullYear() - 1;
+            this.isStudent = true;
+            alert("Студент зачислен")
+        } else {
+            alert("студент уже зачислен");
+        }
+    };
+
+    Student.prototype.expel = function () {
+        this.isStudent = false;
+        alert("Студент отчислен");
+    };
+    var Katya = new User("Katya", "Nikolaeva");
+    alert(Katya.getInfo());
+    var Alex = new Student("Alex", "Skvarkovsky", 2018);
+    Alex.enroll();
+    alert(Alex.getCourse());
+    alert(Alex.getInfo());
+    Alex.enroll();
+    alert(Alex.getCourse());
+    Alex.expel();
+    alert(Alex.getCourse());
+</script>
+</body>
+</html>

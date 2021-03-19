@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="tree">
+    <li>Отдел web-разработки
+        <ul>
+            <li>Junior
+                <ul>
+                    <li>Иванов И.И.</li>
+                    <li>Сидоров И.И</li>
+                    <li>Петров П.П.</li>
+                </ul>
+            </li>
+            <li>Middle
+                <ul>
+                    <li>Кодов К.К.</li>
+                    <li>Текстов П.П.</li>
+                    <li>Пробелов З.З.</li>
+                </ul>
+            </li>
+            <li>Senior
+                <ul>
+                    <li>Штормов А.А.</li>
+                    <li>Саблаймов С.С.</li>
+                    <li>Атомов З.З.</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>Отдел тестирования
+        <ul>
+            <li>Junior
+                <ul>
+                    <li>Тестов Т.Т.</li>
+                    <li>Багов Б.Б.</li>
+                </ul>
+            </li>
+            <li>Middle
+                <ul>
+                    <li>Ошибкин О.О.</li>
+                    <li>Багов Б.Б.</li>
+                    <li>Селениумов С.С.</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+<script>
+
+    tree.onclick = function(event) {
+        console.log(event.target);
+        if (event.target.tagName !== 'LI') {  //ссылка на объект события
+            return;
+        }
+        let children = event.target.querySelector('ul');
+        console.log(children);
+        //возвращает первый элемент, который соответствует указанному селектору
+        if (!children) return;
+        children.hidden = !children.hidden;
+    }
+</script>
+</body>
+</html>

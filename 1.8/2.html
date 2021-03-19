@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+function newUL(text) {
+    let ul = document.createElement('ul');
+    document.body.appendChild(ul);
+    ul.appendChild(document.createTextNode(text));
+}
+
+function newLi(text) {
+    let li = document.createElement('li');
+    var ull = document.body.lastChild;
+    ull.appendChild(li);
+    li.appendChild(document.createTextNode(text));
+}
+    var punkt = prompt("Новый пункт?", "");
+while (punkt !== "") {
+    if (punkt === "yes") {
+        var nameUl = prompt("Название нового пункта", '');
+        newUL(nameUl);
+    } else if (punkt === "no") {
+        var nameLi = prompt("азвание содержимого", '');
+        newLi(nameLi);
+    }
+    punkt = prompt("Новый пункт?", "");
+}
+</script>
+</body>
+</html>

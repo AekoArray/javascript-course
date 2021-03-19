@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function User(fullName) {
+        this.fullName = fullName;
+
+        // User.fullName = function(){
+        //     this.fullName = fullName;
+        //     // return this.firstName + ' ' + this.lastName + ' ' + this.patronym;
+        // };
+        Object.defineProperties(this,{
+
+            firstName: {
+                get: function () {
+                    return this.fullName.split(' ')[0];
+                },
+                set: function (value1) {
+                    this.fullName = value1 +  ' ' + this.patronym + ' ' + this.lastName;
+
+                }
+            },
+            lastName: {
+
+                get: function () {
+                        return this.fullName.split(' ')[2];
+                },
+                set: function (value2) {
+                    this.fullName = this.firstName + ' ' + this.patronym + ' ' + value2;
+                }
+            },
+            patronym: {
+
+                get: function () {
+                    return this.fullName.split(' ')[1];
+                },
+                set: function (value3) {
+                    this.fullName = this.firstName + ' ' + value3 + ' ' +  this.lastName;
+                }
+            },
+        });
+        // var descriptor =
+        //     Object.getOwnPropertyDescriptor(User, 'fullName');
+        // delete descriptor.value;
+        // delete descriptor.writable;
+        //
+        // descriptor.get = function(){
+        //     return this.firstName + ' ' + this.lastName + ' ' + this.patronym;
+        // }
+
+    }
+    let vanya = new User("Иван Васильевич Петров");
+    alert(vanya.fullName);
+    alert( vanya.firstName ); // Иван
+    alert( vanya.lastName ); // Петров
+    alert( vanya.patronym ); // Васильевич
+    vanya.lastName = 'Сидоров';
+    alert( vanya.fullName ); // Иван Васильевич
+</script>
+</body>
+</html>

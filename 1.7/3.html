@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="tss" name="css" id="css">ouu
+<li>yesss</li>
+    <div id="too"></div>
+</div>
+
+
+<script>
+    alert(document.body.children[0].closest("div"));
+
+//возвращает ближайший родительский элемент соответсвующий селектору css
+
+(function() {
+
+if (!Element.prototype.closest) {
+
+Element.prototype.closest = function(css) {
+var node = this;
+
+while (node) {
+if (node.matches(css)) return node;  //оответсвует ли элемнент главному селектору
+else node = node.parentElement;
+}
+return null;
+};
+}
+})();
+</script>
+</body>
+</html>
